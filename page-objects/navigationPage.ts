@@ -1,27 +1,20 @@
-import { Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
+import { HelperBase } from './helperBase'
 
-// Define a class named NavigationPage.
-// By convention, class names start with an uppercase letter.
-export class NavigationPage {
 
-    // Declare a readonly property 'page' of type Page.
-    // 'readonly' means it can only be assigned once (in the constructor).
-    readonly page: Page
+export class NavigationPage extends HelperBase {
 
-    // The constructor is called automatically when creating a new instance of the class.
-    // It takes 'page' as a parameter, which represents the browser page in Playwright.
+ 
     constructor(page: Page) {
-        this.page = page  // Assign the passed 'page' to the class property 'this.page'.
+       super(page) 
     }
 
-    // This is an asynchronous function that navigates to the Form Layouts page.
-    // 'async' means the function can perform asynchronous operations like waiting for elements to load.
     async formLayoutsPage() {
-        // Click on the "Forms" menu item. It finds the element based on the visible text "Forms".
+      
         await this.selectGroupMenuItem('Forms')
 
-        // Click on the "Form Layouts" submenu item that appears after clicking "Forms".
         await this.page.getByText("Form Layouts").click()
+        await this.waitForNumberOfSeconds(2)
     }
 
     async datepickerPage() {
@@ -45,7 +38,7 @@ export class NavigationPage {
     }
 
 
-    private async selectGroupMenuItem(groupItemTitle: string) { //private because it will be used only here
+    private async selectGroupMenuItem(groupItemTitle: string) { 
         const groupMenuItem = this.page.getByTitle(groupItemTitle)
         const expandedState = await groupMenuItem.getAttribute('aria-expanded')
         if (expandedState == 'false') {
