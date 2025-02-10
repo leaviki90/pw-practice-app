@@ -1,8 +1,11 @@
-import { test, expect } from "@playwright/test"
+import { test, expect } from "@playwright/test";
+import 'dotenv/config';
+
+
 
 // This hook runs before each test, navigates to the page, and clicks the button triggering the AJAX request
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://uitestingplayground.com/ajax')  // Navigate to the page
+    await page.goto(process.env.URL)  // Navigate to the page
     await page.getByText("Button Triggering AJAX Request").click()  // Click the button that triggers the AJAX request
 })
 

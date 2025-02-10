@@ -1,9 +1,10 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
+import {test} from '../test-options'
 
 // Test case for drag & drop functionality
-test("drag & drop", async ({ page }) => {
+test("drag & drop", async ({ page, globalsQaURL }) => {
     // Navigate to the demo page
-    await page.goto("https://www.globalsqa.com/demo-site/draganddrop/");
+    await page.goto(globalsQaURL);
 
     // Locate the iframe that contains the draggable elements
     const frame = page.frameLocator('[rel-title="Photo Manager"] iframe');

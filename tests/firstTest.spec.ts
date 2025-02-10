@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test"
 
 // Runs before each test, navigates to the page and clicks through some menu options
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200/');  // Navigate to the base URL
+    await page.goto('/');  // Navigate to the base URL
     await page.getByText("Forms").click();  // Click on the 'Forms' menu option
     await page.getByText("Form Layouts").click();  // Click on the 'Form Layouts' submenu option
 })

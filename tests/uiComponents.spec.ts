@@ -2,18 +2,22 @@ import { test, expect } from "@playwright/test"
 
 test.beforeEach(async ({ page }) => {
     // Navigate to the base URL before each test
-    await page.goto('http://localhost:4200/')
+    await page.goto('/')
 })
 
-test.describe("Form Layouts page", () => {
-
+test.describe.only("Form Layouts page", () => {
+    test.describe.configure({retries: 2})
     test.beforeEach(async ({ page }) => {
         // Navigate to the "Forms" section and select "Form Layouts" page
         await page.getByText("Forms").click()
         await page.getByText("Form Layouts").click()
     })
 
-    test("input fields", async ({ page }) => {
+    test("input fields", async ({ page }, testInfo) => {
+
+        if(testInfo.retry){
+            //do something
+        }
         // Locate the 'Using the Grid' card and find the 'Email' input field
         const usingTheGridEmailInput = page.locator('nb-card', { hasText: 'Using the Grid' })
             .getByRole('textbox', { name: "Email" })
@@ -28,7 +32,7 @@ test.describe("Form Layouts page", () => {
 
         // Assertions to check that the input value is correct
         const inputValue = await usingTheGridEmailInput.inputValue();
-        expect(inputValue).toEqual('test2@test.com');
+        expect(inputValue).toEqual('test2@test.com1');
 
         // Additional assertions using locators
         expect(inputValue).toEqual('test2@test.com');
