@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 })
 
 
-test("navigate to form page", async ({ page }) => {
+test("navigate to form page @smoke", async ({ page }) => {
     const pm = new PageManager(page)
 
     await pm.navigateTo().formLayoutsPage()
@@ -20,7 +20,7 @@ test("navigate to form page", async ({ page }) => {
     await pm.navigateTo().tooltipPage()
 })
 
-test('parametrized methods', async ({ page }) => {
+test('parametrized methods @regression', async ({ page }) => {
     const pm = new PageManager(page)
     const randomFullName = faker.person.fullName()  //can be customized
     //name always Jonh, lastname always different on example

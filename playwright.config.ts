@@ -38,6 +38,14 @@ export default defineConfig<TestOptions>({
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
+    {
+      name: 'mobile',
+      testMatch: 'testMobile.spec.ts',
+      use: {
+        ...devices['iPhone 13 Pro']
+        //viewport: {width: 414, height: 800}
+      }
+    },
 
   ]
 });
